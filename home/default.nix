@@ -1,5 +1,6 @@
-{lib, ...}: {
+{...}: {
   imports = [
+    ./niri.nix
     ./nvim.nix
     ./fonts.nix
     ./theme.nix

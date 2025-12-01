@@ -3,10 +3,14 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+
+    niri.url = "github:sodiboo/niri-flake";
+    niri.inputs.nixpkgs.follows = "nixpkgs";
     nvim = {
       inputs.nixpkgs.follows = "nixpkgs";
       url = "github:lingshinx/nvim-config/flake";
     };
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -34,6 +38,7 @@
               extraSpecialArgs = inputs;
             };
           }
+          inputs.niri.nixosModules.niri
         ];
       };
     };
