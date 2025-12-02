@@ -1,6 +1,7 @@
 {inputs, ...}: {
   imports = [
     ./niri.nix
+    ./kitty.nix
     ./nvim.nix
     ./fonts.nix
     ./theme.nix

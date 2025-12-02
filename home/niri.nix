@@ -1,8 +1,10 @@
-{config, ...}: {
+{
+  config,
+  pkgs,
+  ...
+}: {
   programs.niri = {
-    # 这里的 settings 会被转换成 config.kdl
     settings = {
-      # === 输入设备配置 ===
       input = {
         keyboard.xkb.layout = "us";
         touchpad = {
@@ -16,13 +18,19 @@
           scale = 2.0;
         };
       };
-      # === 布局配置 ===
+
       layout = {
         gaps = 16;
         center-focused-column = "never";
+
         default-column-width = {proportion = 0.5;};
 
-        # 聚焦时的边框颜色
+        preset-column-widths = [
+          {proportion = 0.33333;}
+          {proportion = 0.5;}
+          {proportion = 1.0;}
+        ];
+
         focus-ring = {
           width = 4;
           active.color = "#7fc8ff";
@@ -31,32 +39,52 @@
       };
 
       # === 快捷键绑定 ===
-      # 这里的 config.lib.niri.actions 是模块提供的辅助功能
-      binds = with config.lib.niri.actions; {
-        # 启动终端 (Kitty)
-        "Mod+Return".action = spawn "kitty";
+      binds = {
+        "Mod+T".action.spawn = ["kitty"];
+        "Mod+Space".action.spawn = ["dms" "ipc" "call" "spotlight" "toggle"];
+        "Mod+W".action.close-window = {};
+        "Mod+Shift+E".action.quit = {};
 
-        # 启动程序菜单 (Fuzzel)
-        "Mod+D".action = spawn "fuzzel";
+        "Mod+M".action.maximize-column = {};
 
-        # 关闭当前窗口
-        "Mod+Q".action = close-window;
+        "Mod+Shift+F".action.fullscreen-window = {};
 
-        # 左右移动焦点
-        "Mod+Left".action = focus-column-left;
-        "Mod+Right".action = focus-column-right;
+        "Mod+R".action.switch-preset-column-width = {};
 
-        # 移动窗口位置
-        "Mod+Shift+Left".action = move-column-left;
-        "Mod+Shift+Right".action = move-column-right;
+        "Mod+Minus".action.set-column-width = "-10%";
+        "Mod+Equal".action.set-column-width = "+10%";
 
-        # 退出 Niri (相当于注销)
-        "Mod+Shift+E".action = quit;
+        "Mod+Shift+Minus".action.set-window-height = "-10%";
+        "Mod+Shift+Equal".action.set-window-height = "+10%";
 
-        # 截图 (依赖 grim 和 slurp)
+        "Mod+Left".action.focus-column-left = [];
+        "Mod+Right".action.focus-column-right = [];
+
+        "Mod+H".action.focus-column-left = [];
+        "Mod+L".action.focus-column-right = [];
+
+        "Mod+Down".action.focus-workspace-down = {};
+        "Mod+Up".action.focus-workspace-up = {};
+
+        "Mod+J".action.focus-workspace-down = {};
+        "Mod+K".action.focus-workspace-up = {};
+        "Mod+WheelScrollDown".action.focus-workspace-down = {};
+        "Mod+WheelScrollUp".action.focus-workspace-up = {};
+
+        "Mod+Shift+Left".action.move-column-left = [];
+        "Mod+Shift+Right".action.move-column-right = [];
+
+        "Mod+Shift+H".action.move-column-left = [];
+        "Mod+Shift+L".action.move-column-right = [];
+
+        "Mod+Shift+Down".action.move-window-to-workspace-down = {};
+        "Mod+Shift+Up".action.move-window-to-workspace-up = {};
+
+        "Mod+Shift+J".action.move-window-to-workspace-down = {};
+        "Mod+Shift+K".action.move-window-to-workspace-up = {};
+        "Mod+P".action.spawn = ["sh" "-c" "grim -g \"$(slurp)\" - | wl-copy"];
       };
 
-      # === 启动项 ===
       spawn-at-startup = [
         {command = ["dms" "run"];}
       ];
