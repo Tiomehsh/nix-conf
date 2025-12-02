@@ -11,6 +11,11 @@
         };
       };
 
+      outputs = {
+        "Virtual-1" = {
+          scale = 2.0;
+        };
+      };
       # === 布局配置 ===
       layout = {
         gaps = 16;
