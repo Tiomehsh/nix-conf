@@ -1,5 +1,9 @@
-{pkgs, nvim, ...}:{
-  imports = [nvim.homeModules.default];
+{
+  pkgs,
+  inputs,
+  ...
+}: {
+  imports = [inputs.nvim.homeModules.default];
   programs.neovim = {
     enable = true;
     lingshin-config = {
@@ -16,5 +20,5 @@
       alejandra
       nixd
     ];
-  }; 
+  };
 }

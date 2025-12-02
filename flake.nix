@@ -39,7 +39,7 @@
               useUserPackages = true;
               users.tiome = import ./home;
               backupFileExtension = "bak";
-              extraSpecialArgs = inputs;
+              extraSpecialArgs = {inherit inputs;};
             };
           }
           inputs.niri.nixosModules.niri
