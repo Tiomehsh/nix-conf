@@ -5,6 +5,7 @@
 }: {
   programs.niri = {
     settings = {
+      prefer-no-csd = true;
       input = {
         keyboard.xkb.layout = "us";
         touchpad = {
@@ -18,6 +19,12 @@
           scale = 2.0;
         };
       };
+
+      window-rules = [
+        {
+          draw-border-with-background = false;
+        }
+      ];
 
       layout = {
         gaps = 16;

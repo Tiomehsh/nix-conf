@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   programs.kitty = {
     enable = true;
+    theme = "Catppuccin-Mocha";
     font = {
       name = "Maple Mono NF CN";
       size = 20;
