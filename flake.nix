@@ -15,11 +15,15 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    dms.url = "github:AvengeMedia/DankMaterialShell";
+    dms.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = inputs @ {
     nixpkgs,
     home-manager,
+    dms,
     ...
   }: {
     nixosConfigurations = {

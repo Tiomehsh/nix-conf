@@ -1,4 +1,4 @@
-{...}: {
+{inputs, ...}: {
   imports = [
     ./niri.nix
     ./nvim.nix
@@ -6,7 +6,13 @@
     ./theme.nix
     ./plasma.nix
     ./packages.nix
+    inputs.dms.homeModules.dankMaterialShell.default
   ];
+
+  programs.dankMaterialShell = {
+    enable = true;
+    # See upstream README for more options (theme colors, shell choices, etc.)
+  };
 
   home.stateVersion = "25.11";
 }
