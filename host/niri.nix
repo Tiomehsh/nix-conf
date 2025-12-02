@@ -7,12 +7,10 @@
   programs.niri = {
     enable = true;
   };
+
+  # 只保留核心系统组件
   environment.systemPackages = with pkgs; [
     xwayland-satellite
     wl-clipboard
-    waybar
-    mako
-    fuzzel
-    kitty
   ];
 }

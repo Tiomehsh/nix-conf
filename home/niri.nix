@@ -55,6 +55,7 @@
       spawn-at-startup = [
         {command = ["waybar"];}
         {command = ["mako"];} # 通知服务
+        {command = ["swww-daemon"];}
       ];
     };
   };
